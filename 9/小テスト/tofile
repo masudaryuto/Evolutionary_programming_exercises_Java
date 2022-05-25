@@ -1,0 +1,36 @@
+import java.io.*;
+
+public class Copier{
+
+    void run(String[] args) throws IOException{
+
+        if(args.length != 2){
+            System.out.println("java Copier <from> <to>");
+            return;
+        }
+        BufferedReader in = new BufferedReader(new FileReader(new File(args[0])));
+
+        PrintWriter out = new PrintWriter(new FileWriter(args[1]));
+
+        copy(in, out);
+
+    }
+
+    void copy(BufferedReader in, PrintWriter out) throws IOException{
+
+        String line;
+
+        while( (line = in.readLine()) != null ){
+            out.println(line);
+        }
+        //in.close();
+        out.close();
+    }
+
+    public static void main(String[] args) throws IOException{
+
+        Copier co = new Copier();
+
+        co.run(args);
+    }
+}
